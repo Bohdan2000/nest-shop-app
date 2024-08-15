@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ClientsModule } from '@nestjs/microservices';
 import { INatsConfig } from '../config';
+import { BaseClient } from './nats.client';
 
 @Module({
   imports: [
@@ -16,7 +17,7 @@ import { INatsConfig } from '../config';
       ],
     }),
   ],
-  providers: [],
-  exports: [],
+  providers: [BaseClient],
+  exports: [BaseClient],
 })
 export class NatsModule {}
