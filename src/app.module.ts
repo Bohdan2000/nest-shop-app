@@ -5,6 +5,9 @@ import { UploadModule } from './upload/upload.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { HealthModule } from './health';
+import { NatsModule } from './nats/nats.module';
+import { ConfigModule } from '@nestjs/config';
+import { NatsConfig, ServerConfig } from './config';
 
 @Module({
   imports: [
@@ -16,6 +19,11 @@ import { HealthModule } from './health';
     MongooseModule.forRoot('mongodb://localhost:27017/products'),
     ProductsModule,
     HealthModule,
+    NatsModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [NatsConfig, ServerConfig],
+    }),
   ],
   controllers: [],
   providers: [],

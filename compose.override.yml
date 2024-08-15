@@ -1,0 +1,5 @@
+# services:
+
+#   nats:
+#     ports:
+#       - "${NATS_PORT:-4222}:${NATS_PORT:-4222}"

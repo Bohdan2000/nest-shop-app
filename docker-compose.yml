@@ -1,0 +1,17 @@
+# services:
+
+#   nats:
+#     container_name: nats
+#     build:
+#       context: services/nats
+#     env_file:
+#       - .env
+#     ports:
+#       - "${NATS_MONITOR_PORT:-8222}:${NATS_MONITOR_PORT:-8222}"
+#     restart: unless-stopped
+#     networks:
+#       - nats
+
+# networks:
+#   nats:
+#     name: nats
