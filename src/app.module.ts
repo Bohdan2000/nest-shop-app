@@ -4,6 +4,7 @@ import { PostModule } from './posts/posts.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { HealthModule } from './health';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { HealthModule } from './health';
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
     }),
+    ConfigModule.forRoot(),
     MongooseModule.forRoot('mongodb://localhost:27017/products'),
     PostModule,
     HealthModule,
