@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ProductsModule } from './products/products.module';
+import { PostModule } from './posts/posts.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { HealthModule } from './health';
@@ -12,7 +12,7 @@ import { HealthModule } from './health';
       autoSchemaFile: 'schema.gql',
     }),
     MongooseModule.forRoot('mongodb://localhost:27017/products'),
-    ProductsModule,
+    PostModule,
     HealthModule,
   ],
   controllers: [],
