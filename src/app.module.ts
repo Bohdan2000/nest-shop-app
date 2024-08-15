@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ProductsModule } from './products/products.module';
-import { UploadModule } from './upload/upload.module';
+import { PostModule } from './posts/posts.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { HealthModule } from './health';
@@ -12,9 +11,8 @@ import { HealthModule } from './health';
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
     }),
-    UploadModule,
     MongooseModule.forRoot('mongodb://localhost:27017/products'),
-    ProductsModule,
+    PostModule,
     HealthModule,
   ],
   controllers: [],
