@@ -31,7 +31,7 @@ async function bootstrap() {
   app.getHttpAdapter().getInstance().disable('x-powered-by');
 
   // Http
-  const port = config.getOrThrow<IServerConfig>('nats').port;
+  const port = config.getOrThrow<IServerConfig>('server').port;
   await app.listen(port, () => console.log(`Listening on the port: ${port}`));
 
   runMicroservice(app, config).then();
