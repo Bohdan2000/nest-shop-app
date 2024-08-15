@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PostModule } from './posts/posts.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { HealthModule } from './health';
+import { NatsModule } from './nats/nats.module';
 import { ConfigModule } from '@nestjs/config';
+import { NatsConfig, ServerConfig } from './config';
 
 @Module({
   imports: [
@@ -12,10 +13,13 @@ import { ConfigModule } from '@nestjs/config';
       driver: ApolloDriver,
       autoSchemaFile: 'schema.gql',
     }),
-    ConfigModule.forRoot(),
     MongooseModule.forRoot('mongodb://localhost:27017/products'),
-    PostModule,
     HealthModule,
+    NatsModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [NatsConfig, ServerConfig],
+    }),
   ],
   controllers: [],
   providers: [],
