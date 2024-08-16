@@ -8,11 +8,29 @@ import {
   Delete,
 } from '@nestjs/common';
 
+//import { ClientProxy } from '@nestjs/microservices';
+//import { ConfigService } from '@nestjs/config';
 import { UserService } from './users.service';
 
 @Controller('users')
 export class PostController {
-  constructor(private readonly usersService: UserService) {}
+  // private readonly client: ClientProxy;
+
+  constructor(
+    // private readonly configService: ConfigService,
+    private readonly usersService: UserService,
+  ) {
+    //this.client = this.configService.get<ClientProxy>('nats');
+  }
+
+  // @Get('post/:id')
+  // async getPostsByUserId(@Param('id') id: string) {
+  //   try {
+  //     this.client.emit('getPosts', { userId: id });
+  //   } catch (error) {
+  //     console.error('Error publishing message:', error);
+  //   }
+  // }
 
   @Post()
   async addUser(

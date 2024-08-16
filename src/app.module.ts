@@ -4,6 +4,8 @@ import { UserModule } from './users/users.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { HealthModule } from './health';
+import { ConfigModule } from '@nestjs/config';
+import { NatsConfig, ServerConfig } from './config';
 
 @Module({
   imports: [
@@ -14,6 +16,10 @@ import { HealthModule } from './health';
     MongooseModule.forRoot('mongodb://localhost:27017/users'),
     UserModule,
     HealthModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [NatsConfig, ServerConfig],
+    }),
   ],
   controllers: [],
   providers: [],

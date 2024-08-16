@@ -53,7 +53,7 @@ export class UserService {
     }
   }
 
-  private async findUser(id: string): Promise<User> {
+  private async findUser(id: string): Promise<any> {
     let user;
     try {
       user = await this.userModel.findById(id).exec();
@@ -61,7 +61,7 @@ export class UserService {
       throw new NotFoundException('Could not find user.');
     }
     if (!user) {
-      throw new NotFoundException('Could not find user.');
+      return false;
     }
     return user;
   }
